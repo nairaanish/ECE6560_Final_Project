@@ -5,11 +5,16 @@ import math
 import Utilities as utils
 
 def coeff(I, k):
-
+    '''
+    Function to calculate the diffusion coefficient given the image segment and the parameter 'k'
+    which controls sensitivity to edges.
+    '''
     return 1 / (1 + ((I/k) ** 2))
 
 def diffuse(img, log_f, iter, k, lmb = 0.01):
-
+    '''
+    Function that performs Perona-Malik diffusion on the input image for certain number of iterations.
+    '''
     image = np.array(Image.open(img).convert('L')) / 255
     new_image = np.zeros(image.shape, dtype=image.dtype)
 
@@ -36,7 +41,11 @@ def diffuse(img, log_f, iter, k, lmb = 0.01):
     return result
 
 def run_PM(og_img, img_gauss, img_sp):
-
+    '''
+    Function that runs the Perona-Malik diffusion 
+    '''
+    
+    # Instantiate Parameters
     iterations = 80
     k_gauss = 0.1
     num_col = 5
@@ -109,6 +118,7 @@ def run_PM(og_img, img_gauss, img_sp):
 
     print('\t Running Perona-Malik for Salt and Pepper Image \n')
 
+    # Instantiate Parameters
     k_sp = 0.2
     iterations_sp = 160
     num_col = 5
@@ -209,7 +219,9 @@ def run_PM(og_img, img_gauss, img_sp):
     plt.show()
 
 def compare_k(og_img, img_gauss, img_sp):
-
+    '''
+    Function that plots the PSNR vs a range of values of l
+    '''
     iterations_gaussian = 80
     iterations_sp = 160
     k = np.arange(0.01, 0.61, 0.01)
