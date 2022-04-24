@@ -14,6 +14,9 @@ im_fft = fftpack.fft2(im)
 # Show the results
 
 def plot_spectrum(im_fft):
+    '''
+    Function to plot the frequecy spectrum of the input image
+    '''
     from matplotlib.colors import LogNorm
     # A logarithmic colormap
     plt.imshow(np.abs(im_fft), norm=LogNorm(vmin=5))
