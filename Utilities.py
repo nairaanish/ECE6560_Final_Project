@@ -12,6 +12,10 @@ SALT_AND_PEPPER_RESULT ='results/barbara_gaussian_blur_SP.jpg'
 SALT_AND_PEPPER_EDGES = 'results/barbara_gaussian_edges_SP.jpg'
 
 def noise_addition(noise, img):
+    '''
+    This function adds noise to the input image. The noise types are Gaussian Noise
+    or Salt and Pepper Noise.
+    '''
 
     if noise == "gaussian":
         noisy_image = random_noise(img, 'gaussian', seed = None, clip = True)
@@ -22,6 +26,11 @@ def noise_addition(noise, img):
         return noisy_image
 
 def edge_detection(img):
+    '''
+    This function detects the edges of the input image by convolving the image
+    with the sobel kernels to get the horizontal and vertical edges and then
+    adds them both to get the edges in the image. 
+    '''
 
     vertical_edges = np.array([[1, 0, -1], [2, 0, -2], [1, 0, -1]], np.int32)
     horizontal_edges = np.array([[1, 2, 1], [0, 0, 0], [-1, -2, -1]], np.int32)
@@ -33,6 +42,9 @@ def edge_detection(img):
     return image_edges
 
 def gaussian_blur_edges(noise_img, noise):
+    '''
+    This function performs Gaussian Blur to denoise the input noisy image. 
+    '''
 
     if noise == 'gaussian':
 
